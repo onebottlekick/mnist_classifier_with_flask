@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>MNIST</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+<h1>MNIST DIGIT CLASSIFIER</h1>
+<div>
+    <div>
+        <div>
+        
+            <form action="/predict" method="POST" enctype="multipart/form-data">
+                <div>
+                    <button>이미지 업로드</button>
+                    <input type="file" value="Upload" name="image">
+                </div>
+                <input type="submit" value="result">
+                {% if label %}
+                    <span>
+                        {{ label }}
+                    </span>
+                {% endif %}
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>
