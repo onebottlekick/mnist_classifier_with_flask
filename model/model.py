@@ -24,9 +24,6 @@ def create_model():
 
 model = create_model()
 
-checkpoint_path = 'checkpoint/cp.ckpt'
-checkpoint_dir = os.path.dirname(checkpoint_path)
+model.fit(X_train, y_train, epochs=5)
 
-cp_callback = tf.keras.callbacks.ModelCheckpoint(filepath=checkpoint_path, save_weights_only=True, verbose=1)
-
-model.fit(X_train, y_train, epochs=5, validation_data=(X_test, y_test), callbacks=[cp_callback])
+model.save('model.h5')

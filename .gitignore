@@ -3,3 +3,4 @@
 practice.*
 checkpoint/
 __pycache__/
+*.h5
