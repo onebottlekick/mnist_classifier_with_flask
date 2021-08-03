@@ -1,2 +1,5 @@
 *.pkl
 *.pickle
+practice.*
+checkpoint/
+__pycache__/

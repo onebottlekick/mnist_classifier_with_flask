@@ -1,7 +1,7 @@
 from flask import Flask, request, render_template
 import numpy as np
-import pickle
 from PIL import Image
+import tensorflow as tf
 
 app = Flask(__name__)
 
@@ -20,11 +20,16 @@ def make_predict():
         
         img = np.array(Image.open(file).resize((28, 28)).convert('L')).reshape(1, -1)
 
-        prediction = model.predict(img)[0]
+        prediction = model.predict(img).argmax()
         
         return render_template('index.html', label=prediction)
 
 if __name__ == '__main__':
-    with open('./model/model.pkl', 'rb') as f:
-            model = pickle.load(f)
+    model = tf.keras.models.Sequential([
+        tf.keras.layers.Flatten(input_shape=(28, 28)),
+        tf.keras.layers.Dense(128, activation='relu'),
+        tf.keras.layers.Dropout(0.2),
+        tf.keras.layers.Dense(10, activation='softmax')
+    ])
+    model.load_weights('checkpoint/cp.ckpt')
     app.run(port=5000, debug=True)
