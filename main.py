@@ -18,7 +18,7 @@ def make_predict():
         if not file:
             return render_template('index.html', label='no files')
         
-        img = np.array(Image.open(file).resize((28, 28)).convert('L')).reshape(1, -1)
+        img = np.array(Image.open(file).resize((28, 28)).convert('L')).reshape(1, 28, 28, 1)
 
         prediction = model.predict(img).argmax()
         
